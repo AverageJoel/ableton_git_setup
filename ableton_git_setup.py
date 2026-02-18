@@ -1031,11 +1031,12 @@ ableton_git_setup.py
     with open(os.path.join(PROJECT_DIR, '.gitignore'), 'w', encoding='utf-8') as f:
         f.write(gitignore)
 
-    # Configure git
-    print("Configuring git...")
-    subprocess.run(['git', 'config', 'filter.als.clean', 'cat'], cwd=PROJECT_DIR)
-    subprocess.run(['git', 'config', 'filter.als.smudge', 'cat'], cwd=PROJECT_DIR)
-    subprocess.run(['git', 'config', 'diff.als.textconv', 'python .git-filters/als-textconv-semantic.py'], cwd=PROJECT_DIR)
+
+# Configure git filters (always run so cloned repos are set up correctly)
+print("Configuring git...")
+subprocess.run(['git', 'config', 'filter.als.clean', 'cat'], cwd=PROJECT_DIR)
+subprocess.run(['git', 'config', 'filter.als.smudge', 'cat'], cwd=PROJECT_DIR)
+subprocess.run(['git', 'config', 'diff.als.textconv', 'python .git-filters/als-textconv-semantic.py'], cwd=PROJECT_DIR)
 
 # Generate/regenerate summaries
 print("\nGenerating summaries for .als files...")
