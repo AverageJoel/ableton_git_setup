@@ -33,6 +33,10 @@ if not os.path.exists(os.path.join(PROJECT_DIR, '.git')):
     print("Initializing git repository...")
     subprocess.run(['git', 'init'], cwd=PROJECT_DIR)
 
+# Install Git LFS (safe to run on new and existing projects)
+print("Installing Git LFS...")
+subprocess.run(['git', 'lfs', 'install'], cwd=PROJECT_DIR)
+
 # Create .git-filters directory
 os.makedirs(filters_dir, exist_ok=True)
 
